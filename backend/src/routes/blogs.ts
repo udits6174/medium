@@ -43,6 +43,7 @@ blog_router.post("/", async (c) => {
         data: {
           title: body.title,
           content: body.content,
+          createdAt: body.createdAt,
           authorId: c.get("userId"),
         },
       });
@@ -80,6 +81,7 @@ blog_router.put("/", async (c) => {
         data: {
           title: body.title,
           content: body.content,
+          createdAt: body.createdAt
         },
       });
       return c.json({
@@ -105,10 +107,27 @@ blog_router.get("/all", async (c) => {
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
   try {
-    const allBlogs = await prisma.blog.findMany();
-    console.log(allBlogs);
+    const allBlogs = await prisma.blog.findMany({
+      select:{
+        content: true,
+        title: true,
+        id: true,
+        createdAt: true,
+        author:{
+          select:{
+            name: true
+          }
+        }
+
+      }
+    });
+    // console.log(allBlogs);
     return c.json({ allBlogs });
-  } catch (error) {}
+  } catch (error) {
+    return c.json({ 
+      message: "DB error"
+     });
+  }
 });
 
 blog_router.get("/:id", async (c) => {
@@ -121,6 +140,17 @@ blog_router.get("/:id", async (c) => {
       where: {
         id: id,
       },
+      select:{
+        content: true,
+        title: true,
+        id: true,
+        createdAt: true,
+        author:{
+          select:{
+            name: true
+          }
+        }
+      }
     });
     return c.json({ blog });
   } catch (error) {}

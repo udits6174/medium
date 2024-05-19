@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { SignupType } from "@azxkikr/medium-common";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+import { useSetRecoilState } from "recoil";
+import { emailState, loggedInState } from "../store/atoms";
 
 export const Auth = ({ type }: { type: "signup" | "signin" }) => {
   const [formdata, setformdata] = useState<SignupType>({
@@ -10,6 +12,9 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
     email: "",
     password: "",
   });
+  const setEmailData = useSetRecoilState(emailState);
+  const setLoginData = useSetRecoilState(loggedInState);
+
   const navigate = useNavigate();
   const HandleClick = async () => {
     try {
@@ -19,11 +24,13 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
       );
       const jwt = response.data.jwt;
       localStorage.setItem("token", jwt);
+      setLoginData(true);
       navigate("/blogs");
     } catch (error) {
       alert("Request failed!");
     }
   };
+
   return (
     <div className="h-screen flex flex-col justify-center items-center">
       <div className="max-w-lg">
@@ -48,8 +55,8 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
             type="text"
             placeholder="Enter your name"
             onChange={(e) => {
-              setformdata((formdata) => ({
-                ...formdata,
+              setformdata((prevFormData) => ({
+                ...prevFormData,
                 username: e.target.value,
               }));
             }}
@@ -60,6 +67,7 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
           type="email"
           placeholder="devian@example.com"
           onChange={(e) => {
+            setEmailData(e.target.value);
             setformdata((formdata) => ({
               ...formdata,
               email: e.target.value,

@@ -23,6 +23,7 @@ user_router.post("/signup", async (c) => {
       //add user to DB
       const user = await prisma.user.create({
         data: {
+          name: body.username,
           email: body.email,
           password: body.password,
         },
@@ -85,6 +86,34 @@ user_router.post("/signin", async (c) => {
     c.status(409);
     return c.json({
       message: "Inputs are not correct",
+    });
+  }
+});
+
+user_router.get("/:email", async (c) => {
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+  try {
+    const email = c.req.param("email");
+    const username = await prisma.user.findUnique({
+      where: {
+        email: email,
+      },
+    });
+    if (!username) {
+      c.status(403);
+      return c.json({ error: "user not found" });
+    } else {
+      return c.json({
+        name: username.name,
+      });
+    }
+  } catch (error) {
+    c.status(500);
+    return c.json({
+      message: "Internal Database error",
+      error: error,
     });
   }
 });
