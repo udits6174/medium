@@ -13,7 +13,6 @@ export const Appbar = () => {
     const [usernameData, setUsernameData] = useRecoilState(usernameState);
 
     useEffect(()=>{
-        console.log("Email:", email);
         axios.get(`${BACKEND_URL}/api/v1/user/${email}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`

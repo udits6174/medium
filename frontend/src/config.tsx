@@ -1,4 +1,5 @@
-export const BACKEND_URL = "http://localhost:8787"
+export const BACKEND_URL = import.meta.env.VITE_PROD_BACKEND_URL || "http://localhost:8787"
+
 export const readFromISOFormat = (date: string)=>{
     const mon = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     const isoDate = new Date(date);
