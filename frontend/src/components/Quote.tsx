@@ -5,7 +5,7 @@ export const Quote = () => {
         <div className="max-w-lg">
           <div className="text-3xl font-bold">
             "The customer service I received was exceptional. The support team
-            went above and beyond to address my concers."
+            went above and beyond to address my concerns."
           </div>
           <div className="text-lg font-semibold mt-3">
             Julius Cavalier
