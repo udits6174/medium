@@ -7,16 +7,18 @@ export const BlogSkeleton: React.FC = () => {
         <div className="grid grid-cols-12 px-10 w-full pt-200 max-w-screen-xl pt-12">
           <div className="col-span-8">
             <div className="text-5xl font-extrabold">
-              <div className="animate-pulse h-8 w-full bg-gray-300 mb-4"></div>
-              <div className="animate-pulse h-8 w-2/3 bg-gray-300 mb-4"></div>
-              <div className="animate-pulse h-8 w-1/2 bg-gray-300 mb-4"></div>
+              <div className="animate-pulse h-8 w-11/12 bg-gray-300 mb-4"></div>
+              <div className="animate-pulse h-8 w-10/12 bg-gray-300 mb-4"></div>
+              <div className="animate-pulse h-8 w-8/12 bg-gray-300 mb-4"></div>
             </div>
             <div className="text-slate-500 pt-2">Post on 2nd December 2023</div>
-            <div className="pt-4">
-              <div className="animate-pulse h-8 w-full bg-gray-300 mb-4"></div>
-              <div className="animate-pulse h-8 w-3/4 bg-gray-300 mb-4"></div>
-              <div className="animate-pulse h-8 w-2/3 bg-gray-300 mb-4"></div>
-              <div className="animate-pulse h-8 w-1/2 bg-gray-300 mb-4"></div>
+            <div className="pt-4 mr-10">
+            <div className="animate-pulse h-8 w-11/12 bg-gray-300 mb-4"></div>
+              <div className="animate-pulse h-8 w-10/12 bg-gray-300 mb-4"></div>
+              <div className="animate-pulse h-8 w-9/12 bg-gray-300 mb-4"></div>
+              <div className="animate-pulse h-8 w-9/12 bg-gray-300 mb-4"></div>
+              <div className="animate-pulse h-8 w-8/12 bg-gray-300 mb-4"></div>
+              <div className="animate-pulse h-8 w-8/12 bg-gray-300 mb-4"></div>
             </div>
           </div>
           <div className="col-span-4">
