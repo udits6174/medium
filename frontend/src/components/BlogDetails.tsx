@@ -1,11 +1,9 @@
 import { Blog } from "../hooks"
-import { Appbar } from "./Appbar"
 import { Avatar } from "./Blogcard"
 import {readFromISOFormat} from '../config'
 
 export const BlogDetails = ({ blog }: {blog: Blog}) => {
     return <div>
-        <Appbar />
         <div className="flex justify-center">
             <div className="grid grid-cols-12 px-10 w-full pt-200 max-w-screen-xl pt-12">
                 <div className="col-span-8">
